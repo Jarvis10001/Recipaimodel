@@ -5,16 +5,16 @@ deep-translator==1.11.4
 idna==3.10
 joblib==1.5.1
 langdetect==1.0.9
-numpy==2.0.2
-pandas==2.3.0
+numpy==1.26.4          # Safe stable version with wheels
+pandas==2.2.2          # Compatible with numpy 1.26.x
 python-dateutil==2.9.0.post0
-pytz==2025.2
-requests==2.32.4
-scikit-learn==1.6.1
-scipy==1.13.1
+pytz==2024.1           # Slightly older, stable
+requests==2.32.3       # Safer version with full wheels
+scikit-learn==1.4.2    # Compatible with numpy 1.26.x
+scipy==1.12.0          # Already good
 six==1.17.0
 soupsieve==2.7
 threadpoolctl==3.6.0
 typing_extensions==4.14.0
-tzdata==2025.2
-urllib3==2.5.0
+tzdata==2024.1         # Safer version
+urllib3==2.2.1         # Compatible + stable
