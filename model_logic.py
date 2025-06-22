@@ -84,8 +84,13 @@ def compute_missing_ingredients(recipe_ings, user_ings, common_ings):
     return missing
 
 def recommend_recipes(user_ingredients, user_diet=None, debug=False):
-    # df = pd.read_csv("data/processed/recipes_translated_full.csv")
-    df = pd.read_csv("C:\\Users\\ASUS\\OneDrive\\Desktop\\recipe_recommender\\recipe_recommender\\data\processed\\recipes_translated_full.csv")
+    import os
+    
+    # Get the directory of the current file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(current_dir, "data", "processed", "recipes_translated_full.csv")
+    
+    df = pd.read_csv(csv_path)
     df['translated_ingredients'] = df['translated_ingredients'].apply(ast.literal_eval)
     df['translated_ingredients'] = df['translated_ingredients'].apply(lambda lst: [normalize_ingredient(i) for i in lst])
     user_ingredients = [normalize_ingredient(i) for i in user_ingredients]
@@ -93,7 +98,7 @@ def recommend_recipes(user_ingredients, user_diet=None, debug=False):
     if user_diet:
         df = df[df['diet'].str.lower() == user_diet.lower()]
         if df.empty:
-            df = pd.read_csv("data/processed/recipes_translated_full.csv")
+            df = pd.read_csv(csv_path)
             df['translated_ingredients'] = df['translated_ingredients'].apply(ast.literal_eval)
             df['translated_ingredients'] = df['translated_ingredients'].apply(lambda lst: [normalize_ingredient(i) for i in lst])
 
